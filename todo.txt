@@ -1,0 +1,34 @@
+- Itens para ajustar bugs:
+* - QButton -  Item To está quebrando a página.
+1 - ButtonGroups: active e skeleton estão bugados, fazer ajustes; Spread e spacing estão desativados, fazer ajustes.
+2 - Calendar: checked está bugado(não estão funcionando), adicionar descrição do rules
+3 - Card: Ajustar o playground, fazer funcionar.
+4 - Charts: Ajustes, consertar o playground, adicionar funcionalidades ao gráfico (Gráfico de barras com e sem preciptação acumulada) e otimizar as funcionalidades do chart (futuro)
+5 - Checkbox: Adicionar um helperText -> Abaixo do checkbox -> Descrição:"Provide text for the form group for additional help"
+Adicionar um title
+Adicionar uma props para o icon
+Adicionar funcionalidades que existem no checkbox, mas não estão expostas no Props. (Futuro)
+
+6 - Drawer: Colocar playground, ajustar a descrição do minisize
+7 - Form: Precisa adicionar o playground e fazer o props com as funcionalidades
+8 - List: Adicionar playground (Analisar se é necessario) e finalizar as descrições(ListSection; ListLabel)
+9 - Loading: Props precisam de ajustes: Overlay -> Não ta funcionando e o Inline -> Funciona, mas quebra a aplicação.
+10 - Menu: Ajustar a documentação, adicionar o playground e as props do componente. Usar este link como referência -> (https://quasar.dev/vue-components/menu#qmenu-api)
+11 - Pivot Table: Adicionar playground (Não sei se é necessario), ajustar as props e adicionar os storys (Fazer ajustes para funcionar os storys)
+12 - Progress: Reverse não está funcionando, onChangeComplete -> precisa adicionar a descrição.
+13 - RadioButton: Adicionar descrição do rules.
+14 - Resizer: Adicionar descrição do rules.
+15 - Slider: Fazer a documentação das Props
+16 - Table: Adicionar playground (interessante). Fazer a descrição de 'fixedRow', 'fixedCol', 'cellRender', 'onClickRow', 'onClickCell'
+17 - Tabs: Ajustar a funcionalidade de 'vertical': não está funcionando.
+18 - Textbox: Adicionar descrição para: 'rules', 'type',  'value',  'helperText',  'prepend'.
+19 - Toggle: Adicionar descrição em rules
+20 - Toolbar: Adicionar um playground (se for necessario) e adicionar os elementos das props.
+21 - Tree: Ajustar o playground (Está quebrando a página)  e adicionar os elementos das props.
+
+- Itens para adicionar novas funcionalidades (No futuro):
+1. QChart -> Adicionar algumas funções, a de um toggle para adicionar ou remover um segundo gráfico interno.
+2. QCheckbox - Adicionar algumas funcionalidades que existem, porem não estão na documentação (Props)
+3. QDrawer -> Colocar playground, ajustar algumas descrições
+4. QList -> Falta descrições do "QListSection Props" e "QListLabel Props". Adicionar playgroung também.
+5. QProgress -> Ajustar o progress bar para ficar próximo ao carbon(Alguns itens, ajustar algumas funções (Active, Finished e Error), inline, indented.

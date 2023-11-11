@@ -1,0 +1,98 @@
+/* QProgress.scss */
+
+.q-progress {
+    &__label, &__label-inner {
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.32px;
+        margin-bottom: 0.5rem;
+        color: var(--q-text-01);
+        line-height: 1rem;
+    }
+    &__label-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        border: solid 1px blue;
+        justify-content: center;
+        align-items: center;
+    }
+    &__hint {
+        font-size: 0.75rem;
+        max-height: 12.5rem;
+        overflow: visible;
+        font-weight: 400;
+        margin: 0.25rem 0 0;
+        line-height: 1.34;
+        letter-spacing: 0.32px;
+        color: rgb(158, 158, 158);
+    }
+    &__track {
+        position: relative;
+        height: 6px;
+        background-color: #f4f4f4;
+    }
+    &__value {
+        position: absolute;
+        background-color: var(--q-interactive-04);
+        height: 100%;
+        transition: width .6s;
+    }
+
+    &--xs {
+        .q-progress__track {
+            height: 2px;
+        }
+    }
+
+    &--sm {
+        .q-progress__track {
+            height: 4px;
+        }
+    }
+
+    &--md {
+        .q-progress__track {
+            height: 6px;
+        }
+    }
+
+    &--lg {
+        .q-progress__track {
+            height: 10px;
+        }
+    }
+
+    &--xl {
+        .q-progress__track {
+            height: 14px;
+        }
+    }
+
+    &--indeterminate {
+        .q-progress__value {
+            width: 100%;
+            background-color: transparent;
+            animation-duration: 1400ms;
+            animation-iteration-count: infinite;
+            animation-name: q-progress-indeterminate-animation;
+            animation-timing-function: linear;
+            background-image: linear-gradient(90deg, #0f62fe 12.5%, transparent 12.5%);
+            background-position-x: 0%;
+            background-size: 200% 100%;
+        }
+    }
+}
+
+@keyframes q-progress-indeterminate-animation {
+    0% {
+        background-position-x: 25%
+    }
+
+    80%,100% {
+        background-position-x: -105%
+    }
+}

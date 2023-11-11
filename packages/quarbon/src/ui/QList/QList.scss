@@ -1,0 +1,104 @@
+/* List.scss */
+
+.q-list {
+
+    &--bordered {
+        border: 1px solid var(--q-border-subtle);
+        
+        .c-list-item:not(:last-child){
+            border-bottom: 1px solid var(--q-border-subtle);
+        }
+    }
+    &--separator> {
+        .q-list__item+.q-list__item {
+            border-top: solid 1px var(--q-border-subtle);
+        }
+    }
+
+    .c-divider {
+        border-bottom: 1px solid var(--q-border-subtle);
+    }
+
+    &__item {
+        position: relative;
+        align-items: center;
+        min-height: 48px;
+        padding: 8px 16px;
+    
+        &.q-clickable {
+            transition: background-color .6s;
+        }
+
+        &--active {
+            font-weight: bold;
+            background-color: rgb(141 141 141 / 12%);
+            
+            &::before{
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 4px;
+                background-color: var(--c-primary);
+            }
+        }
+    }
+
+    &__section {
+        flex: 10000 1 0;
+        justify-content: center;
+        align-self: center;
+
+        &--thumbnail {
+            flex: none;
+        }
+        &--avatar {
+            flex: none;
+            &:first-child {
+                margin-right: 12px;
+            }
+        }
+        &--side { 
+            flex: none;
+            align-items: flex-end;
+            padding-left: 16px;
+        }
+        &--top { 
+            justify-content: flex-start;
+            align-self: baseline;
+        }
+    }
+
+    &__label {
+        display: -webkit-box;
+        line-height: 1.2em!important;
+        -webkit-box-orient: vertical;
+
+        &--caption {
+            font-size: .75rem;
+            font-weight: 400;
+            letter-spacing: .03333em;
+            margin-top: 4px;
+        }
+        &--header {
+            color: #757575;
+            padding: 8px 16px 16px 16px;
+            font-size: .875rem;
+            line-height: 1.25rem;
+            letter-spacing: .01786em;
+        }
+    }
+
+    &__section~.q-list__section--avatar {
+        padding-right: 0;
+        padding-left: 16px;
+    }
+}
+
+@media (hover: hover) {
+    .q-list-item.q-clickable:hover {
+        background-color: rgba(0,0,0,.12);
+    }
+}
+

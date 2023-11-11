@@ -1,0 +1,28 @@
+.q-button-group {
+  border: solid 1px var(--q-border-inverse);
+  border-radius: 4px;
+  overflow: hidden;
+  // background-color: var(--q-field-01);
+
+  &__active {
+    background-color: var(--q-layer-selected-inverse);
+    color: var(--q-text-inverse);
+  }
+
+  .q-button {
+    background-color: transparent;
+  }
+  // .q-button--only-icon {
+  //   min-width: 40px;
+  //   min-height: auto;
+  //   padding: 0;
+  // }
+
+  @for $i from 1 through 32 {
+    &--spacing-#{$i} { button:not(:first-child) { margin-inline-start: #{$i}px; } }
+  }
+
+    //&--flat {
+    //    background-color: transparent!important;
+    //}
+}

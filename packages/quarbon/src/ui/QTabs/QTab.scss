@@ -1,0 +1,58 @@
+/* Tab.scss */
+
+.q-tab {
+    display: flex;
+    min-height: 48px;
+    white-space: nowrap;
+    padding: 0 16px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+
+    &>svg {
+        margin-right: 8px;
+    }
+
+    &--fill {
+        background-color: var(--q-layer-accent);
+        .q-tab--active {
+            background-color: var(--q-layer);
+        }
+    }
+
+    &--active {
+        &::after {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: "";
+            width: 100%;
+            height: 2px;
+            background-color: var(--q-interactive-04);
+        }
+    }
+
+    &__indicator--top{
+        &::after {
+            top: 0px;
+            height: 3px;
+            bottom:initial;
+        }
+    }
+
+    i {
+        margin-right: 8px;
+        display: flex;
+
+        &>svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &--icon-right i {
+        margin-right: 0;
+        margin-left: 8px;
+    }
+}

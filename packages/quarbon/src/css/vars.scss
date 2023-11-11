@@ -1,0 +1,225 @@
+/* vars.scss */
+@use "utils/json";
+
+$lg-max: 1920px;
+$md-max: 1440px;
+$sm-max: 1024px;
+$xs-max: 600px;
+
+$primary: #0F62FE;
+$secondary: #393939;
+$accent: #9C27B0;
+$positive: #DEFBE6;
+$negative: #C10015;
+$info: #31CCEC;
+$warning: #F2C037;
+$dark: #262626;
+
+$primary-invert: #dde9ff;
+$secondary-invert: #d7e4e2;
+$accent-invert: #f3ecf5;
+$positive-invert: #141e17;
+$negative-invert: #f7eaec;
+$info-invert: #f5fdff;
+$warning-invert: #141e17;
+$dark-invert: #e4e4e4;
+
+$primary-dark-10: darken($primary, 10%);
+$primary-dark-15: darken($primary, 15%);
+$primary-dark-20: darken($primary, 20%);
+$primary-dark-25: darken($primary, 25%);
+$primary-dark-30: darken($primary, 30%);
+$primary-dark-35: darken($primary, 35%);
+$primary-dark-40: darken($primary, 40%);
+$primary-light-10: lighten($primary, 10%);
+$primary-light-15: lighten($primary, 15%);
+$primary-light-50: lighten($primary, 20%);
+$primary-light-25: lighten($primary, 25%);
+$primary-light-30: lighten($primary, 30%);
+$primary-light-35: lighten($primary, 35%);
+$primary-light-40: lighten($primary, 40%);
+$primary-light-50: lighten($primary, 50%);
+
+$secondary-dark-10: darken($secondary, 10%);
+$secondary-dark-15: darken($secondary, 15%);
+$secondary-dark-20: darken($secondary, 20%);
+$secondary-dark-25: darken($secondary, 25%);
+$secondary-dark-30: darken($secondary, 30%);
+$secondary-dark-35: darken($secondary, 35%);
+$secondary-dark-40: darken($secondary, 40%);
+$secondary-light-10: lighten($secondary, 10%);
+$secondary-light-15: lighten($secondary, 15%);
+$secondary-light-20: lighten($secondary, 20%);
+$secondary-light-25: lighten($secondary, 25%);
+$secondary-light-30: lighten($secondary, 30%);
+$secondary-light-35: lighten($secondary, 35%);
+$secondary-light-40: lighten($secondary, 40%);
+$secondary-light-50: lighten($secondary, 50%);
+
+$accent-dark-10: darken($accent, 10%);
+$accent-dark-15: darken($accent, 15%);
+$accent-dark-20: darken($accent, 20%);
+$accent-dark-25: darken($accent, 25%);
+$accent-dark-30: darken($accent, 30%);
+$accent-dark-35: darken($accent, 35%);
+$accent-dark-40: darken($accent, 40%);
+$accent-light-10: lighten($accent, 10%);
+$accent-light-15: lighten($accent, 15%);
+$accent-light-20: lighten($accent, 20%);
+$accent-light-25: lighten($accent, 25%);
+$accent-light-30: lighten($accent, 30%);
+$accent-light-35: lighten($accent, 35%);
+$accent-light-40: lighten($accent, 40%);
+$accent-light-50: lighten($accent, 50%);
+
+$positive-dark-10: darken($positive, 10%);
+$positive-dark-15: darken($positive, 15%);
+$positive-dark-20: darken($positive, 20%);
+$positive-dark-25: darken($positive, 25%);
+$positive-dark-30: darken($positive, 30%);
+$positive-dark-35: darken($positive, 35%);
+$positive-dark-40: darken($positive, 40%);
+$positive-light-10: lighten($positive, 10%);
+$positive-light-15: lighten($positive, 15%);
+$positive-light-20: lighten($positive, 20%);
+$positive-light-25: lighten($positive, 25%);
+$positive-light-30: lighten($positive, 30%);
+$positive-light-35: lighten($positive, 35%);
+$positive-light-40: lighten($positive, 40%);
+$positive-light-50: lighten($positive, 50%);
+
+$negative-dark-10: darken($negative, 10%);
+$negative-dark-15: darken($negative, 15%);
+$negative-dark-20: darken($negative, 20%);
+$negative-dark-25: darken($negative, 25%);
+$negative-dark-30: darken($negative, 30%);
+$negative-dark-35: darken($negative, 35%);
+$negative-dark-40: darken($negative, 40%);
+$negative-light-10: lighten($negative, 10%);
+$negative-light-15: lighten($negative, 15%);
+$negative-light-20: lighten($negative, 20%);
+$negative-light-25: lighten($negative, 25%);
+$negative-light-30: lighten($negative, 30%);
+$negative-light-35: lighten($negative, 35%);
+$negative-light-40: lighten($negative, 40%);
+$negative-light-50: lighten($negative, 50%);
+
+$info-dark-10: darken($info, 10%);
+$info-dark-15: darken($info, 15%);
+$info-dark-20: darken($info, 20%);
+$info-dark-25: darken($info, 25%);
+$info-dark-30: darken($info, 30%);
+$info-dark-35: darken($info, 35%);
+$info-dark-40: darken($info, 40%);
+$info-light-10: lighten($info, 10%);
+$info-light-15: lighten($info, 15%);
+$info-light-20: lighten($info, 20%);
+$info-light-25: lighten($info, 25%);
+$info-light-30: lighten($info, 30%);
+$info-light-35: lighten($info, 35%);
+$info-light-40: lighten($info, 40%);
+$info-light-50: lighten($info, 50%);
+
+$warning-dark-10: darken($warning, 10%);
+$warning-dark-15: darken($warning, 15%);
+$warning-dark-20: darken($warning, 20%);
+$warning-dark-25: darken($warning, 25%);
+$warning-dark-30: darken($warning, 30%);
+$warning-dark-35: darken($warning, 35%);
+$warning-dark-40: darken($warning, 40%);
+$warning-light-10: lighten($warning, 10%);
+$warning-light-15: lighten($warning, 15%);
+$warning-light-20: lighten($warning, 20%);
+$warning-light-25: lighten($warning, 25%);
+$warning-light-30: lighten($warning, 30%);
+$warning-light-35: lighten($warning, 35%);
+$warning-light-40: lighten($warning, 40%);
+$warning-light-50: lighten($warning, 50%);
+
+$dark-dark-10: darken($dark, 10%);
+$dark-dark-15: darken($dark, 15%);
+$dark-dark-20: darken($dark, 20%);
+$dark-dark-25: darken($dark, 25%);
+$dark-dark-30: darken($dark, 30%);
+$dark-dark-35: darken($dark, 35%);
+$dark-dark-40: darken($dark, 40%);
+$dark-light-10: lighten($dark, 10%);
+$dark-light-15: lighten($dark, 15%);
+$dark-light-20: lighten($dark, 20%);
+$dark-light-25: lighten($dark, 25%);
+$dark-light-30: lighten($dark, 30%);
+$dark-light-35: lighten($dark, 35%);
+$dark-light-40: lighten($dark, 40%);
+$dark-light-50: lighten($dark, 50%);
+
+$z-drawer: 100;
+$z-menu: 200;
+$z-modal: 300;
+
+$backdrop-background: rgba(0,0,0,.4);
+$background-color: var(--q-ui);
+
+$background: #ffffff;
+$background-inverse: #393939;
+
+$text-primary: #161616;
+$text-secondary: #525252;
+$text-inverse: #ffffff;
+
+$background-disabled: #c6c6c6;
+$border-disabled: #c6c6c6;
+$text-disabled: #c6c6c6;
+
+$border-color: #c6c6c6;
+
+$menu-background: #F4F4F4 !default;
+$menu-box-shadow: 0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f !default;
+$menu-max-width: 95vw !default;
+
+// To export as a list
+$primaryColors:( 
+    primary: $primary,
+    secondary: $secondary,
+    accent: $accent,
+    positive: $positive,
+    negative: $negative,
+    info: $info,
+    warning: $warning,
+    dark: $dark
+);
+
+$invertColors: (
+    primary-invert: $primary-invert,
+    secondary-invert: $secondary-invert,
+    accent-invert: $accent-invert,
+    positive-invert: $positive-invert,
+    negative-invert: $negative-invert,
+    info-invert: $info-invert,
+    warning-invert: $warning-invert,
+    dark-invert: $dark-invert,
+);
+
+$backgroundColors: (
+    background-color: $background-color,
+    background-inverse: $background-inverse,
+);
+
+$textColors: (
+    text-primary: $text-primary,
+    text-secondary: $text-secondary,
+    text-inverse: $text-inverse,
+);
+
+:export {
+    lg_max: $lg-max;
+    md_max: $md-max;
+    sm_max: $sm-max;
+    xs_max: $xs-max;
+    z_modal: $z-modal;
+    
+    // backgroundColors: json.json-stringify($backgroundColors);
+    // textColors: json.json-stringify($textColors);
+    // primaryColors: json.json-stringify($primaryColors);
+    // invertColors: json.json-stringify($invertColors);
+
+}

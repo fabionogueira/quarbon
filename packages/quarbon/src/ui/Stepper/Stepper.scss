@@ -1,0 +1,41 @@
+/**
+ * /* Stepper.scss
+ *
+ * @format
+ */
+
+@import "../../css/vars.scss";
+
+.c-stepper {
+  min-height: 20px;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  cursor: default;
+  flex: none;
+
+  &-item {
+    align-items: center;
+    color: #606060;
+
+    &--done {
+      color: $primary-light-10;
+    }
+
+    &--active {
+      border-bottom: solid 3px rgb(47, 0, 255);
+      color: rgb(47, 0, 255);
+    }
+
+    &--disabled {
+      color: #9b9b9b;
+      cursor: not-allowed;
+    }
+
+    flex: 1;
+    padding: 6px;
+
+    .c-icon {
+      margin-right: 10px;
+    }
+  }
+}

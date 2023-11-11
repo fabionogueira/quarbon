@@ -1,0 +1,34 @@
+// Dialog.scss
+
+.q-alert {
+    left:0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    background-color: transparent;
+    padding-top: 10%;
+
+    .q-dialog {
+        border: solid 1px var(--q-ui-02);
+    }
+    .q-dialog__body {
+        padding: 30px 10px;
+    }
+
+    &-transition-enter { opacity: 0; transform: translate3d(0,-40px,0); }
+    &-transition-enter-active { opacity: 1; transform: translate3d(0,0,0); transition: all .3s;}
+    &-transition-exit-active { opacity: 0; transform: translate3d(0,-40px,0); transition: all .3s;}
+}
+
+.q-dialog.q-alert {
+    width: auto!important;
+    height: auto!important;
+    min-width: 400px!important;
+    min-height: auto!important;
+    max-width: 90%!important;
+    max-height: 80%!important;
+}
+
+.size-xs .q-alert {
+    padding-top: 0;
+}

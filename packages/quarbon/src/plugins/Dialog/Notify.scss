@@ -1,0 +1,95 @@
+/** @format */
+
+.notifications {
+  position: fixed;
+  display: flex;
+  padding: 4px;
+
+  // .notification-wraper:nth-child(1) {
+  //     margin: 6px;
+  // }
+  // .notification-wraper:nth-child(n + 2) {
+  //     margin: 0 6px 6px 6px;
+  // }
+
+  &--top,
+  &--bottom {
+    left: 0;
+    right: 0;
+    height: 1px;
+    justify-content: center;
+
+    &.notifications--start {
+      justify-content: start;
+    }
+    &.notifications--end {
+      justify-content: end;
+    }
+  }
+  &--top {
+    top: 4px;
+    align-items: start;
+  }
+  &--bottom {
+    bottom: 0;
+    align-items: end;
+  }
+
+  &--left,
+  &--right {
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    align-items: center;
+
+    &.notifications--start {
+      align-items: start;
+    }
+    &.notifications--end {
+      align-items: end;
+    }
+  }
+  &--left {
+    left: 0;
+    justify-content: start;
+  }
+  &--right {
+    right: 0;
+    justify-content: end;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.q-notify{
+  &--close {
+    position: absolute;
+    width: 50px;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    
+    &:hover {
+      cursor: pointer;
+      background-color: #cfcfcf1c;
+      transition: all .4s;
+    }
+  }
+}
+
+.notification-wraper {
+  position: relative;
+  max-height: 200px;
+  min-width: 18rem;
+  width: auto;
+  overflow: hidden;
+  padding: 6px;
+
+  .bx--toast-notification {
+    margin: 0 !important;
+    width: auto;
+  }
+}

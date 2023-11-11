@@ -1,0 +1,52 @@
+.c-datepicker{
+
+    &__input {
+         display: flex;
+         margin: 10px;   
+         flex-direction: column;
+    }
+    &__label{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.32px;
+    margin-bottom: 4px;
+    }
+    &__input-input {
+   width: 297px;
+    height: 40px;
+    background-color:var(--q-ui-background) ;
+    outline: none;
+    border: none;
+    border-bottom: var(--q-ui-04) 1px solid;
+    
+    padding-left: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.32px;
+    color: #A8A8A8;
+    }
+    &__input-input:focus {
+        border: 2px solid var(--q-interactive-01);
+    }
+    &__calendar{
+        border: solid 1px var(--q-ui-03);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  background-color:var(--q-ui-01);
+  left: 5.6rem;
+  top: 23.5rem;
+  padding: 8px;
+    }
+    &__input-input-icon{
+    position: relative;
+    z-index: 1;
+    bottom: 1.2rem;
+    left: 15.8rem;
+    pointer-events: none;
+    transform: translateY(-50%);
+    }
+}

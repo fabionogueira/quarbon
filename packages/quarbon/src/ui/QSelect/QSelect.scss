@@ -1,0 +1,78 @@
+/* QSelect.scss */
+
+.q-select {
+  select {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0 3rem 0 1rem;
+    outline: 2px solid #0000;
+    outline-offset: -2px;
+    background: transparent;
+    color: var(--q-text-01);
+  }
+
+  select:hover {
+    background-color: var(--q-field-hover);
+    transition: background-color 0.4s;
+  }
+
+  &__menu {
+    .q-checkbox {
+      justify-content: start;
+    }
+  }
+
+  &__inner {
+    height: 100%;
+    width: 100%;
+    padding-right: 26px;
+    display: flex;
+    align-items: center;
+  }
+  &__content {
+    display: flex;
+    padding: 0 14px 0 12px;
+    font-size: 0.875rem;
+  }
+  &__arrow {
+    position: absolute;
+    pointer-events: none;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    color: var(--q-text-01);
+  }
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    margin-right: 6px;
+    border-radius: 10px;
+    background-color: var(--q-background-inverse);
+    color: var(--q-text-inverse);
+  }
+  &__caption {
+    font-weight: bold;
+    padding-right: 4px;
+  }
+
+  .q-field__inner {
+    background-color: var(--q-field-01);
+    padding-right: 0;
+  }
+
+  &--flat {
+    .q-field__inner {
+      background-color: transparent;
+      border-bottom: none;
+    }
+  }
+
+  &--inline {
+    display: inline-flex;
+  }
+}

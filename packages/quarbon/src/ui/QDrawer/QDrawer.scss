@@ -1,0 +1,37 @@
+
+.q-drawer {
+    position: relative;
+    top: 0;
+    background-color: var(--q-ui-01);
+    height: 100%;
+    z-index: 2;
+
+    &--left {
+        left: 0;
+        border-right: solid 1px var(--q-border-subtle);
+        transition: margin-left 300ms;
+    }
+
+    &--right {
+        right: 0;
+        border-left: solid 1px var(--q-border-subtle);
+        transition: margin-right 300ms;
+    }
+
+    &--mini {
+        padding: 1px;
+    }
+
+    &--overlay {
+        position: absolute;
+    }
+
+    &__backdrop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+    }
+
+}

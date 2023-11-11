@@ -1,0 +1,137 @@
+<!-- @format -->
+
+import {
+  Meta,
+  Canvas,
+  Story,
+  ArgsTable
+} from "@storybook/addon-docs";
+import { QRadio } from "../QRadio/index.tsx";
+
+export const argTypes = {
+  labelText: {
+    name: "labelText",
+    defaultValue: "Checkbox Example",
+    control: {
+      type: "text",
+    },
+  },
+  name: {
+    name: "name",
+    control: {
+      type: null,
+    },
+  },
+  value: {
+    name: "value",
+    table: {
+      defaultValue: { summary: false },
+    },
+    control: {
+      type: "boolean",
+    },
+  },
+  disabled: {
+    name: "disabled",
+    defaultValue: false,
+    table: {
+      defaultValue: { summary: false },
+    },
+    control: {
+      type: "boolean",
+    },
+  },
+  error: {
+    name: "error",
+    defaultValue: false,
+    table: {
+      defaultValue: { summary: false },
+    },
+    control: {
+      type: "boolean",
+    },
+  },
+  errorText: {
+    name: "errorText",
+    control: {
+      type: "text",
+    },
+  },
+  onChange: {
+    name: "onChange",
+    table: {
+      category: "Events",
+    },
+    control: false,
+  },
+  rules: {
+    name: "rules",
+    control: false,
+  },
+};
+
+export const Template = (args) => <QRadio {...args} />;
+
+<Meta title="Widget/QRadio" argTypes={argTypes} component={QRadio} />
+
+# QRadio
+
+<Canvas>
+  <Story
+    name="QRadio Example"
+    args={{
+      labelText: "QRadio Example",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="QRadio Example" />
+
+## Variants
+
+### Default checked
+
+<Canvas>
+  <Story
+    name="Default Checked"
+    args={{
+      labelText: "Default Checked Example",
+      defaultChecked: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Disabled
+
+<Canvas>
+  <Story
+    name="Disabled"
+    args={{
+      labelText: "Checkbox Disabled",
+      disabled: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Error
+
+<Canvas>
+  <Story
+    name="Error"
+    args={{
+      labelText: "Checkbox Error",
+      error: true,
+      errorText: "This checkbox was error",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Improvement ideas for the future

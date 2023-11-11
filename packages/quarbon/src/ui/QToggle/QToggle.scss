@@ -1,0 +1,47 @@
+.q-toggle {
+  position: relative;
+  display: block;
+  padding: 3px;
+  border-radius: 18px;
+  width: 3rem;
+  height: 1.5rem;
+  background-color: var(--q-ui-04);
+  transition: background-color .22s cubic-bezier(.4,0,.2,1);
+
+  &__inner {
+    position: absolute;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-align: right;
+    left: 0;
+    width: 18px;
+    transition: width .22s cubic-bezier(.4,0,.2,1);
+  }
+  &__thumb {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--q-icon-03);
+  }
+  &__input {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+  }
+  &--icon-right {
+    flex-direction: row-reverse;
+  }
+  &--checked {
+    .q-toggle__inner {
+      width: 100%;
+    }
+    background-color: var(--q-support-02);
+  }
+}

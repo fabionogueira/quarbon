@@ -1,0 +1,47 @@
+// QToolbar.scss
+
+.q-toolbar {
+    position: relative;
+    padding: 0;
+    min-height: 48px;
+    width: 100%;
+    background-color: var(--q-ui-background);
+    border-bottom: solid 1px var(--q-ui-01);
+
+    &>*:not(.q-separator) {
+        min-width: 3rem;
+        align-self: stretch;
+    }
+    &--inset {
+        padding-left: 47px;
+        margin-top: -1px;
+    }
+    
+    &__title {
+        min-width: 1px;
+        max-width: 100%;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: .01em;
+        padding: 0 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    /* divider */
+    .q-separator {
+        align-self: stretch;
+        background-color: var(--q-border-subtle);
+    }
+
+    .q-field__control {
+        height: auto;
+    }
+
+    .q-field, .q-field__inner {
+        min-height: auto;
+    }
+}
+
+

@@ -1,0 +1,62 @@
+/* transition.css */
+
+/* none */
+.none-enter { }
+.none-enter-active { transition: opacity 400ms; }
+.none-exit-active { transition: opacity 400ms; }
+
+/* fade-all */
+.fade-all-enter { opacity: 0; }
+.fade-all-enter-active { opacity: 1; transition: all 400ms; }
+.fade-all-exit-active { opacity: 0; max-height:0; transform: translate3d(0,-100%,0); transition: all 400ms; }
+
+/* fade */
+.fade-enter { opacity: 0; }
+.fade-enter-active { opacity: 1; transition: opacity 400ms; }
+.fade-exit-active { opacity: 0; transition: opacity 400ms; }
+
+/* slide_top */
+.slide_top-enter { opacity: 0; transform: translate3d(0,-70%,0); }
+.slide_top-enter-active { opacity: 1; transform: translate3d(0,0,0); transition: all .4s;}
+.slide_top-exit-active { opacity: 0; transform: translate3d(0,-70%,0); transition: all .4s;}
+
+/* slide_bottom */
+.slide_bottom-enter { opacity: 0; transform: translate3d(0,70%,0); }
+.slide_bottom-enter-active { opacity: 1; transform: translate3d(0,0,0); transition: all .4s;}
+.slide_bottom-exit-active { opacity: 0; transform: translate3d(0,70%,0); transition: all .4s;}
+
+/* slide_left */
+.slide_left-enter { opacity: .3; transform: translate3d(-80%,0,0); z-index: 1;}
+.slide_left-enter-active { opacity: 1; transform: translate3d(0,0,0); transition: all .3s; }
+.slide_left-exit-active { opacity: 0; transform: translate3d(-80%,0,0); transition: all .3s; }
+
+/* slide_right */
+.slide_right-enter { opacity: 0; transform: translate3d(80%,0,0); z-index:1 }
+.slide_right-enter-active { opacity: 1; transform: translate3d(0,0,0); transition: all .4s; }
+.slide_right-exit-active { opacity: 0; transform: translate3d(80%,0,0); transition: all .4s; }
+
+.zoom_in-enter { opacity:0; transform: scale(1.1); z-index: 1; }
+.zoom_in-enter-active { opacity:1; transform:scale(1); transition: opacity 300ms, transform 300ms; }
+.zoom_in-exit-active { opacity: 0; transform: scale(1.1); transition: all .4s; }
+
+.page-enter { opacity:0; transform:scale(1.1); }
+.page-enter-active { opacity:1; transform:scale(1); transition: opacity 300ms, transform 300ms; }
+.page-exit { opacity:.5; transform: scale(1); }
+.page-exit-active { opacity: 0; transform: scale(0); transition: opacity 100ms, transform 300ms; }
+
+.buzz {
+    animation-name: keyframes-buzz;
+    animation-duration: 0.15s;
+    animation-timing-function: linear;
+}
+
+@keyframes keyframes-buzz {
+    50% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+}

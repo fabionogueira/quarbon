@@ -1,0 +1,62 @@
+/* TileList.scss */
+
+@import "../../css/vars.scss";
+
+.c-tile-list2 {
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    &--bordered {
+        border: solid 1px #dbdbdb;
+    }
+
+    & > * {
+        flex: 1; /* this is to make elements/columns in each row have equal width and fill up all available space in the row, similar to auto-fit in grid */
+        /* flex-grow: 1; this can be used to make elements/columns in each row maintain their individual width but stretch to fill up all available space in the row */
+    }
+
+}
+
+.c-tile-list {
+    
+    /**
+     * User input values.
+    */
+    --grid-layout-gap: 10px;
+    --grid-column-count: 4; /* This gets overridden by an inline style. */
+    --grid-item--min-width: 180px; /* This gets overridden by an inline style. */
+    
+    /**
+     * Calculated values.
+    */
+    --gap-count: calc(var(--grid-column-count) - 1);
+    --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+    --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+    grid-gap: var(--grid-layout-gap);
+}
+
+.c-tile {
+    display: flex;
+    position: relative;
+    min-height: 100px;
+    background: white;
+    padding: 10px;
+    flex-direction: column;
+    border: solid 1px #dfdfdf;
+
+    &--active {
+        border: solid 1px $primary;
+    } 
+
+    &__body {
+        flex: 1;
+    }
+
+}

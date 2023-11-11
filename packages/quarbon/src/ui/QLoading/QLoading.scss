@@ -1,0 +1,78 @@
+/** @format */
+
+.q-loading {
+  position: relative;
+  z-index: auto;
+  background-color: transparent;
+
+  &__label {
+    margin-left: 20px
+  }
+
+  &__icon {
+    animation-name: rotate;
+    animation-duration: 690ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    width: 10.5rem;
+    height: 10.5rem;
+  }
+  &__svg {
+    fill: transparent;
+    animation: q-loading__rotation .7s infinite linear;
+
+    circle {
+      stroke-width: 12;
+      stroke-linecap: butt;
+      stroke-dashoffset: 143.759616;
+    }
+  }
+  &__stroke {
+    stroke: currentColor;
+    stroke-dasharray: 340;
+  }
+  &__background {
+    stroke: #dddddd;
+  }
+
+  &--no-inline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+
+    &.q-loading--overlay {
+      background-color: rgba(22, 22, 22, 0.5);
+    }
+  }
+  &--bottom {
+    flex-direction: column;
+    .q-loading__label {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 20px
+    }
+  }
+  &--top {
+    flex-direction: column-reverse;
+    .q-loading__label {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+  &--left {
+    flex-direction: row-reverse;
+    .q-loading__label {
+      margin-right: 20px
+    }
+  }
+}
+
+@keyframes q-loading__rotation {
+  from {transform: rotate(0deg);}
+  to   {transform: rotate(359deg);}
+}

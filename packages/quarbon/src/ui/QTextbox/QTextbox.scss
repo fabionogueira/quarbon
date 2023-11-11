@@ -1,0 +1,87 @@
+/* QTextbox.scss */
+
+.q-textbox {
+  font-size: 0.875rem;
+  margin: 20px 0;
+
+  input,
+  textarea {
+    border: none;
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    min-width: 20px;
+    outline: 0 !important;
+    background: none;
+    padding: 0 1rem;
+    font-weight: 400;
+    line-height: 1.29;
+    letter-spacing: 0.16px;
+    color: currentColor;
+  }
+  textarea {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 52px;
+  }
+  &--type-textarea {
+    .q-field__control {
+      height: auto;
+    }
+  }
+  &--prefixed {
+    input {
+      padding-left: 4px;
+    }
+    .q-field__control {
+      padding-left: 1rem;
+    }
+  }
+
+  &__view-password-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 22px;
+    margin-left: 6px;
+    color: #525252;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .q-field__inner {
+    transition: background-color 0.4s;
+    //background-color: #fff;
+  }
+  .q-field__inner {
+    //background-color: #f1efef;
+  }
+
+  &:hover {
+    .q-field__inner {
+      background-color: var(--q-hover-ui);
+    }
+  }
+}
+
+//.q-field--filled.q-textbox {
+//    background: transparent;
+//
+//    .q-field__inner {
+//        border-bottom: 1px solid #8d8d8d;
+//        background-color: #ededed;
+//    }
+//}
+
+//.q-field--dark.q-textbox {
+//    .q-field__inner {
+//        background-color: #ffffff1c;
+//    }
+//
+//    &:hover {
+//        .q-field__inner {
+//            background-color: #ffffff2e;
+//        }
+//    }
+//}

@@ -1,0 +1,23 @@
+/**
+ * automatically generated content
+ */
+
+import { ReactComponent as Svg } from "../../../svg/$PATH$"
+import { QIconProps } from "../TIcon"
+
+export default function $NAME$({
+    className = "",
+    color = "currentColor",
+    size = 24
+}: QIconProps) {
+    return (
+        <Svg
+            className={`q-icon ${className}`}
+            style={{
+                fill: color,
+                width: size,
+                height: size
+            }}
+        />
+    )
+}

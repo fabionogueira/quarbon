@@ -1,0 +1,73 @@
+@import '@quarbon/css/vars.scss';
+
+.q-accordion {
+  border-bottom: solid 1px var(--q-border-subtle);
+
+  &.q-dark {
+    background: var(--q-ui-background);
+    color: var(--q-text-01);
+  }
+
+  &--bordered {
+    border-left: solid 1px var(--q-border-subtle);
+    border-right: solid 1px var(--q-border-subtle);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .q-accordion-item {
+      pointer-events: none;
+      color: var(--q-text-disabled);
+    }
+  }
+
+  &--icon-left {
+    .q-accordion-item__head {
+      flex-direction: row-reverse;
+    }
+    .q-accordion-item__icon {
+      margin-right: 15px;
+    }
+  }
+}
+
+.q-accordion-item {
+  border-top: solid 1px var(--q-border-subtle);
+
+  &--disabled {
+    pointer-events: none;
+    color: var(--q-text-disabled);
+  }
+
+  &--opened {
+    .q-accordion-item__icon {
+      transform: rotate(180deg);
+    }
+    .q-accordion-item__label {
+      font-weight: bold;
+    }
+  }
+
+  &__head {
+    position: relative;
+    padding: 0 15px;
+    cursor: pointer;
+    min-height: 40px;
+  }
+  &__wrapper {
+    overflow: hidden;
+    transition: height ease 0.2s;
+  }
+  &__content {
+    padding: 10px;
+  }
+  &__icon {
+    transition: transform 0.2s;
+    display: flex;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+}

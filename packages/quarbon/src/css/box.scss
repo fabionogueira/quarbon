@@ -1,0 +1,48 @@
+/* box.scss */
+
+.hbox{display:flex; justify-content:flex-start; align-items:stretch; flex-direction:row;}
+.vbox{display:flex; justify-content:flex-start; align-items:stretch; flex-direction:column;}
+.client{flex:1; position:relative; overflow: hidden;}
+.scroll {overflow:auto;}
+
+[valign="top"], .v-align--top {align-items:flex-start!important;}
+[valign="bottom"], .v-align--bottom {align-items:flex-end!important;}
+[valign="center"], .v-align--center {align-items:center!important;}
+
+[halign="left"], .h-align--left {justify-content:flex-start!important;}
+[halign="right"], .h-align--right {justify-content:flex-end!important;}
+[halign="center"], .h-align--center {justify-content:center!important;}
+
+.vbox[layout="space-around"], .hbox[layout="space-around"] {justify-content:space-around;}
+.vbox[layout="space-between"], .hbox[layout="space-between"]{justify-content:space-between;}
+.vbox[layout="center center"], .hbox[layout="center center"]{justify-content:center; align-items:center;}
+
+.space {
+    display:flex;
+    flex-grow: 1;
+    align-items:center;
+    justify-content:center;
+}
+
+[box-test]{ border: solid 1px red; padding: 2px; }
+
+.container{
+    display: block;
+    overflow-y: auto;
+    padding-bottom:40px;
+}
+
+.shadow-1 { box-shadow: 0 1px 3px #0003,0 1px 1px #00000024,0 2px 1px -1px #0000001f }
+.shadow-up-1 { box-shadow: 0 -1px 3px #0003,0 -1px 1px #00000024,0 -2px 1px -1px #0000001f }
+.shadow-2 { box-shadow: 0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f }
+.shadow-up-2 { box-shadow: 0 -1px 5px #0003,0 -2px 2px #00000024,0 -3px 1px -2px #0000001f }
+.shadow-3 { box-shadow: 0 1px 8px #0003,0 3px 4px #00000024,0 3px 3px -2px #0000001f }
+.shadow-up-3 { box-shadow: 0 -1px 8px #0003,0 -3px 4px #00000024,0 -3px 3px -2px #0000001f }
+.shadow-4 { box-shadow: 0 2px 4px -1px #0003,0 4px 5px #00000024,0 1px 10px #0000001f }
+.shadow-up-4 { box-shadow: 0 -2px 4px -1px #0003,0 -4px 5px #00000024,0 -1px 10px #0000001f }
+.shadow-5 { box-shadow: 0 3px 5px -1px #0003,0 5px 8px #00000024,0 1px 14px #0000001f }
+.shadow-up-5 { box-shadow: 0 -3px 5px -1px #0003,0 -5px 8px #00000024,0 -1px 14px #0000001f }
+.shadow-6 { box-shadow: 0 3px 5px -1px #0003,0 6px 10px #00000024,0 1px 18px #0000001f }
+.shadow-up-6 { box-shadow: 0 -3px 5px -1px #0003,0 -6px 10px #00000024,0 -1px 18px #0000001f }
+
+.ellipsis { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }

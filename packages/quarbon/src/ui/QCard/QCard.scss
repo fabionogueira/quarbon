@@ -1,0 +1,24 @@
+.q-card {
+  background: var(--q-ui-01);
+  margin-bottom: 10px;
+
+  &--bordered {
+    border: solid 1px var(--q-ui-03);
+  }
+  &__section {
+    padding: 14px;
+    flex: 1;
+    max-width: 100%;
+
+    &--horizontal {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__actions {
+    //&>* {
+    //  margin-left: 20px;
+    //}
+  }
+}

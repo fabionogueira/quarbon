@@ -1,0 +1,12 @@
+/* QMenu.scss */
+
+@import "@quarbon/css/vars.scss";
+
+.q-menu {
+    box-shadow: $menu-box-shadow;
+    background: var(--q-ui-01);
+
+    .q-list__item {
+        background: transparent;
+    }
+}

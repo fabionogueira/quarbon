@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/v2-preview/web-types.json",
+  "name": "versatus-ui",
+  "framework": "versatus-ui",
+  "version": "1.0.0",
+  "contributions": {
+    "html": {
+      "attributes": [
+        {
+          "name": "data-close-drawer",
+          "description": "Close QDrawer component when element is clicked",
+          "default": "true",
+          "value": {
+            "required": false
+          }
+        }
+      ]
+    }
+  }
+}

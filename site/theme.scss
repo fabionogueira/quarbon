@@ -1,0 +1,82 @@
+
+*::-webkit-scrollbar {
+  width: .5em;
+  height: .5em;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.docs-qbutton {
+  .canvas__content .q-button{
+    margin-right: 6px;
+  }
+}
+.docs-qcard {
+  .canvas__content {
+    .q-card{
+      margin-right: 6px;
+      max-width: 250px;
+    }
+  }
+}
+.docs-qcheckbox {
+  .canvas__content {
+    padding: 20px;
+  }
+}
+.docs-qtextbox {
+  .canvas__content {
+    padding: 20px;
+    display: block;
+  }
+}
+.docs-qform {
+  .native-input {
+    border: solid 1px #878787;
+    height: 32px;
+    padding-left: 8px;
+  }
+}
+.docs-plugins {
+  &__buttons {
+    .q-button {
+      margin-right: 20px;
+    }
+  }
+}
+.docs-qmenu {
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 72px;
+    height: 72px;
+  }
+  .idea {
+    padding: 16px;
+  }
+}
+
+.docs-qtoolbar {
+  .canvas__content {
+    flex-direction: column;
+  }
+  &__container {
+    width: 100%;
+    .q-toolbar {
+      margin-top: 8px;
+    }
+  }
+}
+
+.docs-chart {
+  .canvas__content {
+    display: block;
+  }
+}

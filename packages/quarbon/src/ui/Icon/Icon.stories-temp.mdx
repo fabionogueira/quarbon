@@ -1,0 +1,51 @@
+<!-- @format -->
+
+import { Meta, Canvas, Story, ArgsTable } from "@storybook/addon-docs/";
+
+import { CbCheckmark } from "../../icons/cb";
+export const argTypes = {
+  className: {
+    control: false,
+  },
+  size: {
+    options: ["12", "14", "16", "18", "20", "24"],
+    control: "select",
+  },
+};
+
+<Meta title="Widget/Icon" argTypes={argTypes} component={CbCheckmark} />
+
+# Icon
+
+## Usage
+
+### import
+
+```jsx
+import CbCheckmark from "src/libs/versatus/icons/cb";
+
+<CbCheckmark size="14px"/>
+```
+
+## Props
+
+<Canvas>
+  <Story
+    name="Icon Example"
+    parameters={{
+      layout: "centered",
+    }}
+  >
+    {(args) => <CbCheckmark size="14" {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable />
+
+## Icons Library
+
+To check the library please take a look at the [Icons Library](?path=/story/documentation-iconography--page)
+
+## Improvement ideas for the future
+
+- [ ] Import icons in only file, example: `import { CheckedIcon, CheckmarkFillIcon } from "/icons"`
