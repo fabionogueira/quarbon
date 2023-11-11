@@ -1,7 +1,7 @@
-import { createRoot } from "react-dom/client";
-import "@quarbon";
-import App from "./App";
-import {BrowserRouter} from "react-router-dom";
+import { createRoot } from 'react-dom/client'
+import '@quarbon'
+import App from './App'
+import {BrowserRouter, HashRouter} from 'react-router-dom'
 //import App from "@quarbon/.docs/App"
 // import { useLayoutEffect } from "react";
 //
@@ -15,8 +15,9 @@ import {BrowserRouter} from "react-router-dom";
 //   useLayoutEffect(() => props.setProps && props.setProps(p));
 // };
 
-const rootElement: any = document.getElementById("root");
+const rootElement: any = document.getElementById('root')
 createRoot(rootElement).render(
-  <BrowserRouter>
-  <App />
-    </BrowserRouter>);
+  <HashRouter>
+    <App />
+  </HashRouter>,
+)
