@@ -40,15 +40,20 @@ export function getPlugin(name:string) {
     return registered[name] ?? {};
 }
 
-if (!import.meta.env.DEV) {
-    const description = "Quarbon UI";
-    const ascii = [
-        " ███   █   █    █   ████  ████   ███  █   █",
-        "█   █  █   █   █ █  █   █ █   █ █   █ ██  █",
-        "█   █  █   █   ███  ████  ████  █   █ █ █ █",
-        "█  ██  █   █  █   █ █  █  █   █ █   █ █  ██",
-        " ███ █  ███   █   █ █   █ ████   ███  █   █",
-    ];
+if (typeof window !== 'undefined' && !import.meta.env.DEV) {
+  // eslint-disable-next-line no-console
+  console.log(
+    `%c
 
-    console.log(`%c\n\n${ascii.join("\n")}\n\n${description}\n`, "font-family:monospace;color:#dd4f51;font-size:12px;");
+ ██████╗ ██╗   ██╗ █████╗ ██████╗ ██████╗  ██████╗ ███╗   ██╗
+██╔═══██╗██║   ██║██╔══██╗██╔══██╗██╔══██╗██╔═══██╗████╗  ██║
+██║   ██║██║   ██║███████║██████╔╝██████╔╝██║   ██║██╔██╗ ██║
+██║▄▄ ██║██║   ██║██╔══██║██╔══██╗██╔══██╗██║   ██║██║╚██╗██║
+╚██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝╚██████╔╝██║ ╚████║
+ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
+
+Quarbon UI.
+`,
+    'font-family:monospace;color:#dd4f51;font-size:12px;',
+  );
 }

@@ -5,8 +5,8 @@ import { QField } from '@quarbon/ui'
 import { createClassName } from '@quarbon/utils/css'
 import { TBaseProps } from '@quarbon/types'
 import { QFormContext } from '@quarbon/ui/QForm/QFormContext'
-
 import './QTextbox.scss'
+import { MaskUtil } from '@quarbon/utils/mask'
 
 SvgIcon.set('q-textbox-view-password', {
   content:
@@ -37,14 +37,14 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
   let { append, error } = props
   const {
     // autogrow,
-    // mask,
+    mask,
+    unmaskedValue,
     className, // remove from ..rest
     autoFocus,
     disabled,
     maxLength,
-    name,
+    name = '',
     prefix,
-    placeholder,
     readonly,
     rules,
     suffix,
@@ -58,11 +58,16 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
     ...rest
   } = props
   const css = createClassName(cssMap, props, 'q-textbox', defaults)
-  const [valueS, setValue] = useState(value)
+  const [viewValue, setViewValue] = useState<string>(
+    mask ? MaskUtil.getMasked((value as string) ?? '', mask) : (value as string),
+  )
   const [focus, setFocus] = useState(false)
   const [showPsw, setShowPsw] = useState(false)
+  const [caret, setCaret] = useState<any>(null)
+  const [forceCaretUpdate, setForceCaretUpdate] = useState(false)
   const ctx = useContext(QFormContext)
-  const inputRefElement = useRef<any>(null)
+  const inputRef = useRef<any>(null)
+  const placeholder = mask ?? props.placeholder
 
   if (type == 'password') {
     append = Array.isArray(append) ? append : [append]
@@ -72,42 +77,62 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
       </div>,
     )
   }
-
   if (ctx) {
     ctx.onSubmitError(name, () => {
-      inputRefElement.current.focus()
+      inputRef.current.focus()
     })
 
     error = error || ctx.getError(name)
   }
 
   useEffect(() => {
-    setValue(value)
-  }, [value])
+    if (caret) {
+      MaskUtil.setCaret(inputRef.current, caret)
+      //setCaret(null)
+    }
+  }, [viewValue, caret, forceCaretUpdate])
+
   useLayoutEffect(() => {
     if (autoFocus) {
-      inputRefElement.current?.focus()
+      inputRef.current?.focus()
     }
   }, [autoFocus])
 
   function onClick_ShowPassword() {
     setShowPsw(!showPsw)
   }
-
   function onInput(event: any) {
-    const val = event.target.value
+    let val = event.target.value
 
-    setValue(val)
+    if (mask) {
+      let { start } = MaskUtil.getCaret(inputRef.current)
+      const inputType = event.nativeEvent.inputType
+      const mValue = MaskUtil.getMasked(val, mask)
+      const uValue = MaskUtil.getUnmasked(val, mask)
+
+      if (inputType == 'insertText') start = MaskUtil.nextMaskedCharPosition(mask, start)
+      if (inputType.startsWith('delete')) start = MaskUtil.beforeMaskedCharPosition(mask, start)
+
+      val = unmaskedValue ? uValue : mValue
+
+      setViewValue(mValue)
+      setForceCaretUpdate(!forceCaretUpdate)
+      setCaret(start)
+    } else {
+      setViewValue(val)
+    }
+
     onChange && onChange(val)
-    name && ctx?.setValue(name, val, rules)
+    name && ctx?.setValue(name, rules)
   }
-
-  function onFocusLocal(flag: boolean) {
-    if (flag && onFocus) onFocus()
-
-    if (!flag && onBlur) onBlur()
-
-    setFocus(flag)
+  function onFocusLocal() {
+    if (mask) MaskUtil.selectText(inputRef.current, 0)
+    onFocus?.()
+    setFocus(true)
+  }
+  function onBlurLocal() {
+    onBlur?.()
+    setFocus(false)
   }
 
   return (
@@ -125,29 +150,29 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
       {type == 'textarea' ? (
         <textarea
           readOnly={readonly}
-          ref={inputRefElement}
+          ref={inputRef}
           name={name}
           placeholder={placeholder}
           disabled={disabled}
-          value={valueS || ''}
+          value={viewValue ?? ''}
           onInput={onInput}
-          onFocus={() => onFocusLocal(true)}
-          onBlur={() => onFocusLocal(false)}
+          onFocus={onFocusLocal}
+          onBlur={onBlurLocal}
         />
       ) : (
         <input
           autoComplete="off"
           readOnly={readonly}
           disabled={disabled}
-          ref={inputRefElement}
+          ref={inputRef}
           name={name}
           maxLength={maxLength}
           type={showPsw ? 'text' : type}
           placeholder={placeholder}
-          value={valueS || ''}
+          value={viewValue ?? ''}
           onInput={onInput}
-          onFocus={() => onFocusLocal(true)}
-          onBlur={() => onFocusLocal(false)}
+          onFocus={onFocusLocal}
+          onBlur={onBlurLocal}
         />
       )}
       {suffix}
@@ -173,8 +198,14 @@ type TQTextboxProps = TBaseProps & {
 
   /**
    * @doc:attr:control false
+   * @doc:attr:description Custom mask ex: ####-##-##
    */
   mask?: string
+
+  /**
+   * @doc:attr
+   */
+  unmaskedValue?: boolean
 
   /**
    * @doc:attr
@@ -184,7 +215,7 @@ type TQTextboxProps = TBaseProps & {
   /**
    * @doc:attr:control false
    */
-  name: string
+  name?: string
 
   /**
    * @doc:attr

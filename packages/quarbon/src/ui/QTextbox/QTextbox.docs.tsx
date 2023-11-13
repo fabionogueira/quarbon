@@ -1,6 +1,7 @@
 import { Meta, Page, Header, Props, Playground, Story } from '@docs/components'
 import { QTextbox } from '@quarbon/ui'
 import { CbCalendar, CbSend } from '@quarbon/icons/cb'
+import { useState } from 'react'
 
 Meta.set({
   name: 'Components/Textbox',
@@ -14,6 +15,7 @@ Meta.set({
         <Story id="QTextboxWithIconsStory" label="With icons" source={QTextboxWithIconsStory} />
         <Story id="QTextboxInputTypesStory" label="Input types" source={QTextboxInputTypesStory} />
         <Story id="QTextboxPrefixSuffixStory" label="Prefix and Suffix" source={QTextboxPrefixSuffixStory} />
+        <Story id="QTextboxWithMaskStory" label="Mask" source={QTextboxWithMaskStory} />
       </Page>
     )
   },
@@ -101,5 +103,20 @@ function QTextboxPrefixSuffixStory() {
         <QTextbox name="textbox" label="With suffix" suffix="@example.com" />
       </div>
     </>
+  )
+}
+
+/**
+ * @doc:story
+ */
+function QTextboxWithMaskStory() {
+  const [v1, setV1] = useState<any>(null)
+  const [v2, setV2] = useState<any>(null)
+
+  return (
+    <div className="q-gap-16">
+      <QTextbox value={v1} label={`Value is: ${v1}`} mask="(##) #####.####" onChange={setV1} />
+      <QTextbox value={v2} unmaskedValue label={`Value is: ${v2}`} mask="(##) #####.####" onChange={setV2} />
+    </div>
   )
 }

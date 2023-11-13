@@ -111,22 +111,15 @@ export function Playground(props: TPlaygroundProps) {
   )
 }
 
-const Component = (props: any) => {
-  return (
-    <div style={{ position: 'relative', width: '100%' }}>
-      <props.component {...props.props} />
-    </div>
-  )
-}
-
 const Input = (properties: any) => {
   const { props, name, value, onChange } = properties
+  const type = props.control?.type ?? props.type
 
   function defineValue(newValue: any) {
     onChange && onChange(name, newValue)
   }
 
-  if (props.control?.type == 'select') {
+  if (type == 'select') {
     props.control.options = props.control.options.map((opt: any) => {
       if (typeof opt == 'string') {
         return {
@@ -159,7 +152,7 @@ const Input = (properties: any) => {
     )
   }
 
-  if (props.type == 'boolean') {
+  if (type == 'boolean') {
     return (
       <div className="ctrl-boolean">
         <label>
@@ -174,7 +167,7 @@ const Input = (properties: any) => {
     )
   }
 
-  if (props.type == 'string') {
+  if (type == 'string') {
     return (
       <div className="ctrl-string">
         <input type="text" value={value || ''} onInput={(event) => defineValue((event.target as any).value)} />
@@ -182,7 +175,7 @@ const Input = (properties: any) => {
     )
   }
 
-  if (props.type == 'number') {
+  if (type == 'number') {
     return (
       <div className="ctrl-number">
         <input type="number" value={value | 0} onInput={(event) => defineValue(Number((event.target as any).value))} />
@@ -190,7 +183,15 @@ const Input = (properties: any) => {
     )
   }
 
-  return props.type
+  if (type == 'date') {
+    return (
+      <div className="ctrl-date">
+        <input type="date" value={value || new Date()} onChange={(event) => defineValue((event.target as any).value)} />
+      </div>
+    )
+  }
+
+  return type
 }
 
 type TPlaygroundProps = {
@@ -200,7 +201,6 @@ type TPlaygroundProps = {
 type TPlaygroundRenderComponent = {
   displayName: string
 }
-
 export type TPlaygroundRender = {
   component: TPlaygroundRenderComponent
   props: any

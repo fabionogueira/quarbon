@@ -10,6 +10,9 @@ const cssMap: any = {
   slide: { left: 'q-drawer--left', right: 'q-drawer--right' },
   mini: { true: 'q-drawer--mini' },
 }
+const defaults = {
+  slide: 'left',
+}
 
 let QDrawerId = 0
 
@@ -17,51 +20,80 @@ let QDrawerId = 0
  * @doc:component
  */
 export const QDrawer = forwardRef<HTMLElement, TQDrawerProps>((props, ref) => {
-  const [id] = useState(`QScreen-${++QDrawerId}`)
-  const [width, setWidth] = useState(props.width ?? 250)
-  const [breakpointMode, setBreakpointMode] = useState(false)
   const backdropElementRef = useRef<any>()
   const elRef = useRef(null)
-  const defaults = {
-    slide: 'left',
-  }
   const {
-    breakpoint = 0,
     children,
-    mini = false,
-    overlay = false,
-    miniSize = 48,
+    breakpoint = 1023,
+    breakpointAction = 'none',
     open = true,
+    overlay = false,
+    mini = false,
+    miniSize = 48,
+    width = 250,
     slide,
     style = {},
     onClose,
     onChange,
   } = props
-  const overlayMode = overlay || breakpointMode
-  const cls = createClassName(cssMap, props, `q-drawer${overlayMode ? ' q-drawer--overlay' : ''}`, defaults)
+  const [_open, setOpen] = useState(open)
+  const [_mini, setMini] = useState(mini)
+  const [_overlay, setOverlay] = useState(overlay)
+  const [id] = useState(`QScreen-${++QDrawerId}`)
+  const [_width, setWidth] = useState(width)
+  const [lastAction, setLastAction] = useState("")
+  const cls = createClassName(cssMap, props, `q-drawer${_overlay ? ' q-drawer--overlay' : ''}`, defaults)
   const onResizeWindow = useCallback(
-    (width: number) => {
-      if (width <= breakpoint && open) {
-        setBreakpointMode(true)
-        onChange?.(false)
-      } else if (width > breakpoint && !open) {
-        setBreakpointMode(false)
-        onChange?.(true)
+    (w: number) => {
+      if (w <= breakpoint) {
+        if (breakpointAction == 'mini') {
+          setMini(true)
+        } else if (breakpointAction == 'overlay') {
+          if (_open) {
+            setOverlay(true)
+          }
+        } else if (breakpointAction == 'close') {
+          setOpen(false)
+        }
+          setLastAction(breakpointAction)
+      } else if (w > breakpoint) {
+        if (lastAction == "mini") {
+          setMini(false)
+        } else if (lastAction == "overlay") {
+          setOverlay(false)
+        }
+        if (lastAction == "close") {
+          setOpen(true)
+        }
+        setLastAction("")
       }
     },
-    [breakpoint, onChange, open],
+    [breakpoint, breakpointAction, _open, lastAction],
   )
 
   ref = ref ?? elRef
 
-  if (open) {
-    style[slide == 'right' ? 'marginRight' : 'marginLeft'] = 0
-  } else {
-    style[slide == 'right' ? 'marginRight' : 'marginLeft'] = -(mini ? miniSize : width)
+  if (!_open) {
+    style[slide == 'right' ? 'marginRight' : 'marginLeft'] = -_width
   }
 
   useEffect(() => {
-    if (breakpoint) {
+    setOpen(open)
+    setMini(mini)
+    setOverlay(overlay)
+    setLastAction("")
+  }, [mini, open, overlay])
+
+  useEffect(() => {
+    if (!_open) {
+      setOverlay(false)
+      onClose?.()
+    }
+    onChange?.(_open)
+  }, [_open, onChange, onClose]);
+
+  useEffect(() => {
+    if (breakpointAction != 'none') {
       Screen.onResize(onResizeWindow, id)
       onResizeWindow(Screen.width())
     }
@@ -69,24 +101,21 @@ export const QDrawer = forwardRef<HTMLElement, TQDrawerProps>((props, ref) => {
     return () => {
       Screen.offChange(id)
     }
-  }, [id, breakpoint, open, onResizeWindow])
-
-  useEffect(() => {
-    onChange?.(open)
-  }, [onChange, open])
+  }, [breakpointAction, id, onResizeWindow])
 
   useLayoutEffect(() => {
     const el = (ref as any).current
 
-    if (open) el['close-drawer'] = () => onClose?.()
+    if (_open) el['close-drawer'] = () => onClose?.()
 
     return () => {
       el && delete el['close-drawer']
     }
-  }, [ref, open, onClose])
+  }, [ref, _open, onClose])
 
   function onClickBackdrop() {
-    onChange ? onChange(!open) : onClose?.()
+    setOpen(false)
+    setOverlay(false)
   }
   function onComponentResize(size: number) {
     setWidth(size)
@@ -95,19 +124,16 @@ export const QDrawer = forwardRef<HTMLElement, TQDrawerProps>((props, ref) => {
   return (
     <>
       <QResizerListener onResize={onComponentResize} nodeRef={ref} />
-      <CSSTransition
-        nodeRef={backdropElementRef}
-        in={overlayMode && open && !mini}
-        unmountOnExit
-        classNames="fade"
-        timeout={300}
-      >
+
+      {/* overlay element */}
+      <CSSTransition nodeRef={backdropElementRef} in={_overlay} unmountOnExit classNames="fade" timeout={300}>
         <div ref={backdropElementRef} className="q-drawer__backdrop" onClick={onClickBackdrop} />
       </CSSTransition>
 
+      {/* content element */}
       <CSSTransition
         nodeRef={ref}
-        in={open}
+        in={_open}
         // unmountOnExit
         classNames="none"
         timeout={300}
@@ -118,7 +144,7 @@ export const QDrawer = forwardRef<HTMLElement, TQDrawerProps>((props, ref) => {
           className={cls}
           style={{
             ...style,
-            width: mini ? miniSize : width,
+            width: _mini ? miniSize : _width,
           }}
         >
           {children}
@@ -129,9 +155,18 @@ export const QDrawer = forwardRef<HTMLElement, TQDrawerProps>((props, ref) => {
 })
 QDrawer.displayName = 'QDrawer'
 type Slide = 'left' | 'right'
+type TBreakpointAction = 'overlay' | 'close' | 'mini' | 'none'
 type TQDrawerProps = TBaseProps & {
   /**
-   * @doc:attr
+   * @doc:attr:type string
+   * @doc:attr:default none
+   * @doc:attr:description "overlay" | "close" | "mini" | "none"
+   * @doc:attr:control { "value":"none", "type":"select", "options":[ "overlay", "close", "mini", "none" ]}
+   */
+  breakpointAction?: TBreakpointAction
+
+  /**
+   * @doc:attr:default 1023
    */
   breakpoint?: number
 

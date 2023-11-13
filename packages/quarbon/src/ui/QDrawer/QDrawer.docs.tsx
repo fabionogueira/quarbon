@@ -51,14 +51,7 @@ function QDrawerBasicStory() {
       </QToolbar>
 
       <div className="client hbox">
-        <QDrawer
-          open={openLeft}
-          mini={mini}
-          overlay
-          onClose={() => {
-            setOpenLeft(false)
-          }}
-        >
+        <QDrawer open={openLeft} onChange={setOpenLeft}>
           <QButton
             icon={mini ? <CbArrowRight /> : <CbArrowLeft />}
             flat

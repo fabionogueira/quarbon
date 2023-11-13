@@ -1,54 +1,25 @@
-import { Meta, TProps, Page, Story, Header } from "@docs/components";
-import { QDatePicker } from "@quarbon/ui";
-import { Playground } from "@docs/components/Playground";
-
-
-const propsDef: TProps = {
-    id: {
-        type: "string",
-        default: ''
-    },
-    value: {
-        type: "string",
-        default: ""
-    },
-    onChange: {
-        type: "event",
-        default: "() => {}",
-    },
-    placeholder: {
-        type: "string",
-        default: " ",
-    },
-    labelText: {
-        type: "string",
-        default: " ",
-    },
-}
+import { Meta, Page, Story, Header } from '@docs/components'
+import { QDatePicker } from '@quarbon/ui'
+import { Playground } from '@docs/components/Playground'
 
 Meta.set({
-    name: "Components/DatePicker",
-    custom: DatePickerDocs
-});
+  name: 'Components/DatePicker',
+  custom: DatePickerDocs,
+})
 
 function DatePickerDocs() {
-    return (
-        <Page className="docs-datepicker">
-            <Header component={QDatePicker} description="" />
-            <Playground attributes={propsDef} component={QDatePicker} />
+  return (
+    <Page component={QDatePicker} className="docs-datepicker">
+      <Header />
+      <Playground />
+      <Story id="QDatePickerBasicStory" label="Basic" source={QDatePickerBasicStory} />
+    </Page>
+  )
+}
 
-            <Story
-                id="DatePicker.Basic"
-                label="Basic"
-                source={Basic}
-            />
-        </Page>
-    )
-
-    function Basic() {
-        return (
-            // @code=DatePicker.Basic
-            <QDatePicker id={"1"} placeholder="dd/mm/yyyy" />
-        )
-    }
+/**
+ * @doc:story
+ */
+function QDatePickerBasicStory() {
+  return <QDatePicker id={'1'} placeholder="dd/mm/yyyy" />
 }

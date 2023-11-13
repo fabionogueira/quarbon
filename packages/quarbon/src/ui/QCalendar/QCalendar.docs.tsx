@@ -1,57 +1,32 @@
-import {Meta, TProps, Page, Story, Header} from "@docs/components";
-import {QCalendar} from "@quarbon/ui";
-import {Playground} from "@docs/components/Playground";
-
-const propsDef:TProps = {
-    checked: {
-        type: "boolean",
-        default: true
-    },
-    onSelectDate: {
-        type: "event"
-    },
-    name: {
-        type: "string",
-        control: false
-    },
-    rules: {
-        type: "any",
-        control: false
-    },
-    value: {
-        type: "Date",
-        control: false
-    },
-    skeleton: {
-        type: "boolean"
-    },
-};
+import { Meta, Page, Story, Header, Props } from '@docs/components'
+import { QCalendar } from '@quarbon/ui'
+import { Playground } from '@docs/components/Playground'
+import { useState } from 'react'
 
 Meta.set({
-    name: "Components/Calendar",
-    custom: CalendarDocs
-});
-
-function CalendarDocs() {
+  name: 'Components/Calendar',
+  custom() {
     return (
-        <Page className="docs-calendar">
-            <Header component={QCalendar} description="" />
-            <Playground attributes={propsDef} component={QCalendar} />
-
-            <Story
-                id="Calendar.Basic"
-                label="Basic"
-                source={Basic}
-            />
-
-        </Page>
-    );
-}
-
-function Basic() {
-    return (
-        // @code=Calendar.Basic
-        <QCalendar />
-        // @code
+      <Page component={QCalendar} className="docs-calendar">
+        <Header />
+        <Props />
+        <Playground />
+        <Story id="QCalendarBasicStory" label="Basic" source={QCalendarBasicStory} />
+      </Page>
     )
+  },
+})
+
+/**
+ * @doc:story
+ */
+function QCalendarBasicStory() {
+  const [date, setDate] = useState<any>(null)
+
+  return (
+    <div className="vbox v-align--center" style={{width:"100%"}}>
+      <pre>{date}</pre>
+      <QCalendar value={date} onSelectDate={setDate} />
+    </div>
+  )
 }

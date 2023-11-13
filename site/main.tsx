@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import '@quarbon'
 import App from './App'
-import {BrowserRouter, HashRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 //import App from "@quarbon/.docs/App"
 // import { useLayoutEffect } from "react";
 //
@@ -17,7 +17,7 @@ import {BrowserRouter, HashRouter} from 'react-router-dom'
 
 const rootElement: any = document.getElementById('root')
 createRoot(rootElement).render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>,
+  </HashRouter>,
 )
