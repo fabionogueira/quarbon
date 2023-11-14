@@ -1,6 +1,7 @@
 import { Meta, Page, Story, Header } from '@docs/components'
 import { QDatePicker } from '@quarbon/ui'
 import { Playground } from '@docs/components/Playground'
+import {useState} from "react";
 
 Meta.set({
   name: 'Components/DatePicker',
@@ -21,5 +22,12 @@ function DatePickerDocs() {
  * @doc:story
  */
 function QDatePickerBasicStory() {
-  return <QDatePicker id={'1'} placeholder="dd/mm/yyyy" />
+  const [date, setDate] = useState("")
+
+  return (
+    <div>
+      <pre>{date}</pre>
+      <QDatePicker label="Simple date" onChange={setDate} />
+    </div>
+  )
 }

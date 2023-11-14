@@ -8,7 +8,7 @@ Meta.set({
   name: 'Components/Checkbox',
   custom() {
     return (
-      <Page className="docs-qbutton" component={QCheckbox}>
+      <Page component={QCheckbox} className="docs-qcheckbox">
         <Header description="QButton description" />
         <Props />
         <Playground />

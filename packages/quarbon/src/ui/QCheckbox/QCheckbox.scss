@@ -4,6 +4,10 @@
   white-space: nowrap;
   justify-content: flex-start;
 
+  .q-field__inner {
+    border-bottom-color: transparent;
+  }
+
   &__label {
     font-size: 0.875rem;
     font-weight: 400;

@@ -3,12 +3,14 @@ import { createClassName } from '@quarbon/utils/css'
 import { TBaseProps } from '@quarbon/types'
 
 import './QProgress.scss'
+import {CbCheckmarkFilled, CbErrorFilled} from "@quarbon/icons/cb";
 
 const cssMap: any = {
   dark: { true: 'q-progress--dark' },
   indeterminate: { true: 'q-progress--indeterminate' },
   reverse: { true: 'q-progress--reverse' },
   rounded: { true: 'q-progress--rounded' },
+  status: { active: 'q-progress--active', finished: 'q-progress--finished', error: 'q-progress--error' },
   size: {
     xs: 'q-progress--xs',
     sm: 'q-progress--sm',
@@ -84,6 +86,10 @@ export const QProgress = forwardRef<HTMLDivElement, TQProgressProps>((props, ref
           onTransitionEnd={onTransitionEnd}
         />
         {labelInner && <div className="q-progress__label-inner">{labelInner}</div>}
+        <div className="q-progress__icon">
+          <CbCheckmarkFilled className="mark-icon" size={14} />
+          <CbErrorFilled className="error-icon" size={14} />
+        </div>
       </div>
 
       {hint && <div className="q-progress__hint">{hint}</div>}
@@ -108,6 +114,11 @@ type TQProgressProps = TBaseProps & {
    * @doc:attr:control { "value":"solving something" }
    */
   hint?: string
+
+  /**
+   * @doc:attr:control { "type":"select", "options": ["active", "finished", "error"] }
+   */
+  status?: 'active' | 'finished' | 'error'
 
   /**
    * @doc:attr

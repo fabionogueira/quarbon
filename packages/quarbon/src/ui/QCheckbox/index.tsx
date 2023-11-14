@@ -5,6 +5,7 @@ import { createClassName } from '@quarbon/utils/css'
 import { CbCheckbox, CbCheckboxCheckedFilled, CbCheckboxIndeterminateFilled } from '@quarbon/icons/cb'
 import { QFormContext } from '@quarbon/ui/QForm/QFormContext'
 import './QCheckbox.scss'
+import {QField} from "@quarbon/ui";
 
 SvgIcon.set('q-checkbox-error', {
   content:
@@ -41,7 +42,7 @@ export const QCheckbox = forwardRef<HTMLLabelElement, TQCheckboxProps>((props, r
   const css = createClassName(
     QCheckboxCssMap,
     props,
-    `row align-center q-checkbox q-clickable${isChecked ? ' q-checkbox--checked' : ''}`,
+    `q-checkbox q-clickable${isChecked ? ' q-checkbox--checked' : ''}`,
   )
   const Component = isChecked === true ? checkedIcon : isChecked === false ? uncheckedIcon : undeterminedIcon
 
@@ -58,12 +59,12 @@ export const QCheckbox = forwardRef<HTMLLabelElement, TQCheckboxProps>((props, r
   }, [checked])
 
   // #IFDOC
-  globalThis.setProps?.(props, { ...props, checked: isChecked })
+  // globalThis.setProps?.(props, { ...props, checked: isChecked })
   // #ENDIF
 
   return (
-    <label className={css} style={style} data-disabled={disabled || undefined} ref={ref}>
-      <Component size={iconSize} />
+    <QField {...props} className={css} style={style} data-disabled={disabled || undefined} ref={ref}>
+      {props.iconAlign == "left" ? <Component size={iconSize} /> : null}
       {label && <span className="q-checkbox__label">{label}</span>}
       <input
         className="q-checkbox__input"
@@ -72,7 +73,8 @@ export const QCheckbox = forwardRef<HTMLLabelElement, TQCheckboxProps>((props, r
         checked={isChecked || false}
         onChange={() => onChangeInput(!isChecked)}
       />
-    </label>
+      {props.iconAlign == "right" ? <Component size={iconSize} /> : null}
+    </QField>
   )
 })
 QCheckbox.displayName = 'QCheckbox'
@@ -83,7 +85,7 @@ type TQCheckboxProps = TBaseProps & {
   checked?: boolean
 
   /**
-   * @doc:attr
+   * @doc:attr:control false
    */
   checkedIcon?: any
 
@@ -100,7 +102,7 @@ type TQCheckboxProps = TBaseProps & {
 
   /**
    * @doc:attr
-   * @doc:attr:control { "value":"Checkbox label" }
+   * @doc:attr:control { "type":"string", "value":"Checkbox label" }
    */
   label?: any
 
@@ -127,17 +129,37 @@ type TQCheckboxProps = TBaseProps & {
   skeleton?: boolean
 
   /**
-   * @doc:attr
+   * @doc:attr:control false
    */
   uncheckedHide?: boolean
 
   /**
-   * @doc:attr
+   * @doc:attr:control false
    */
   uncheckedIcon?: any
 
   /**
-   * @doc:attr
+   * @doc:attr:control false
    */
   undeterminedIcon?: any
+
+  /**
+   * @doc:attr
+   */
+  filled?: boolean
+
+  /**
+   * @doc:attr
+   */
+  helperText?: string
+
+  /**
+   * @doc:attr
+   */
+  outlined?:boolean
+
+  /**
+   * @doc:attr
+   */
+  error?:string
 }

@@ -1,21 +1,15 @@
 import { forwardRef, useEffect, useRef, useState } from 'react'
-import { QCalendar, QField, QList, QMenu, QTextbox } from '@quarbon/ui'
+import { QCalendar, QMenu, QTextbox } from '@quarbon/ui'
 import { CbCalendar } from '@quarbon/icons/cb'
 import './QDatePicker.scss'
-import { Icon } from '@quarbon/ui/Icon'
-import date from '@quarbon/utils/date'
-
-// To do: Ajustar outras funções do DatePicker,
-// 1. Adicionar um range - Data de inicio e fim com e sem calendario. (Não tem essa necessidade)
-//2. Fazer só o datepicker sem o calendario
-// 3. Colocar o calendario para aparecer em outros lados, por exemplo, em cima do datepicker.
 
 /**
  * @doc:component
  */
 export const QDatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
-  const { value, onChange, placeholder, labelText, mask = 'dd/mm/yyyy' } = props
+  const { value, onChange, mask = '####-##-##' } = props
   const [_value, setValue] = useState(value)
+  const [focusByClick, setFocusByClick] = useState(false)
   const [show, setShow] = useState(false)
   const textboxRef = useRef<any>(null)
 
@@ -24,21 +18,50 @@ export const QDatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, r
   }, [value])
 
   function onFocus() {
-    // setShow(true)
+    setFocusByClick(false)
+    if (!focusByClick && !textboxRef.current.cancel) {
+      setShow(true)
+    }
+  }
+  function onBlur() {
+    setFocusByClick(false)
+    if (textboxRef.current.cancel) {
+      setShow(false)
+    }
+    textboxRef.current.cancel = false
+  }
+  function onMouseDown() {
+    setFocusByClick(true)
+  }
+  function onClick() {
+    if (!textboxRef.current.cancel) {
+      setShow(true)
+    }
+    textboxRef.current.cancel = false
   }
   function onSelectDate(newDate: any) {
+    textboxRef.current.cancel = true
     textboxRef.current.focus()
     setShow(false)
-    setValue(date.format(newDate, mask))
+    setValue(newDate)
+    onChange?.(newDate)
   }
 
   return (
-    <>
-      <QTextbox ref={textboxRef} name="textbox" value={_value} onFocus={onFocus} append={<CbCalendar size={16} />} />
+    <div onMouseDown={onMouseDown} onClick={onClick}>
+      <QTextbox
+        {...props}
+        ref={textboxRef}
+        mask={mask}
+        value={_value}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        append={<CbCalendar size={16} />}
+      />
       <QMenu show={show} anchorRef={textboxRef} onClose={() => setShow(false)}>
-        <QCalendar onSelectDate={onSelectDate} />
+        <QCalendar value={(_value as any)} onSelectDate={onSelectDate} />
       </QMenu>
-    </>
+    </div>
   )
 })
 QDatePicker.displayName = 'QDatePicker'
@@ -61,10 +84,40 @@ type DatePickerProps = {
   /**
    * @doc:attr
    */
-  labelText?: string
+  filled?: boolean
 
   /**
    * @doc:attr
+   */
+  helperText?: string
+
+  /**
+   * @doc:attr:control { "value":"Label" }
+   */
+  label?:string
+
+  /**
+   * @doc:attr
+   */
+  outlined?:boolean
+
+  /**
+   * @doc:attr
+   */
+  prefix?:string
+
+  /**
+   * @doc:attr
+   */
+  suffix?:string
+
+  /**
+   * @doc:attr
+   */
+  error?:string
+
+  /**
+   * @doc:attr:control false
    */
   mask?: string
 }

@@ -22,7 +22,6 @@ export const QLoading = forwardRef<HTMLDivElement, TQLoadingProps>((props, ref) 
   const { style, size = 32, label } = props
   const css = createClassName(cssMap, props, 'q-loading row align-center justify-center')
   const width = Number(size || 32)
-  const height = width
 
   return (
     <div ref={ref} className={css} style={style}>
@@ -30,7 +29,7 @@ export const QLoading = forwardRef<HTMLDivElement, TQLoadingProps>((props, ref) 
         className="q-loading__icon"
         style={{
           width: width,
-          height,
+          height: width,
         }}
       >
         <svg className="q-loading__svg" viewBox="0 0 100 100">

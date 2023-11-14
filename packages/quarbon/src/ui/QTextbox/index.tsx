@@ -86,9 +86,14 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
   }
 
   useEffect(() => {
+    if (value != viewValue) {
+      setViewValue(mask ? MaskUtil.getMasked((value as string) ?? '', mask) : (value as string))
+    }
+    //console.log(value, viewValue)
+  }, [value]);
+  useEffect(() => {
     if (caret) {
       MaskUtil.setCaret(inputRef.current, caret)
-      //setCaret(null)
     }
   }, [viewValue, caret, forceCaretUpdate])
 
@@ -125,9 +130,9 @@ export const QTextbox = forwardRef<HTMLLabelElement, TQTextboxProps>((props, ref
     onChange && onChange(val)
     name && ctx?.setValue(name, rules)
   }
-  function onFocusLocal() {
+  function onFocusLocal(event:any) {
     if (mask) MaskUtil.selectText(inputRef.current, 0)
-    onFocus?.()
+    onFocus?.(event)
     setFocus(true)
   }
   function onBlurLocal() {
@@ -203,7 +208,7 @@ type TQTextboxProps = TBaseProps & {
   mask?: string
 
   /**
-   * @doc:attr
+   * @doc:attr:control false
    */
   unmaskedValue?: boolean
 
@@ -275,7 +280,7 @@ type TQTextboxProps = TBaseProps & {
   /**
    * @doc:attr:type event
    */
-  onFocus?: () => void
+  onFocus?: (event:any) => void
 
   /**
    * @doc:attr:control false
